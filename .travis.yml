@@ -15,6 +15,6 @@ install:
   - npm install
 script:
   - sls dynamodb install
-  - sls dynamodb start --migrate --stage dev & sleep 10 && npm run test
+  - npm run test
   - pgrep -f "DynamoDBLocal.jar" | xargs kill # Kill DynamoDB Local
   - serverless deploy --stage test
