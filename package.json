@@ -9,7 +9,8 @@
     "buildtest": "tsc --noEmit",
     "dynamodb": "sls dynamodb start --migrate --stage local",
     "jest": "NODE_ENV=test ./node_modules/.bin/jest --ci --verbose --coverage --forceExit --detectOpenHandles",
-    "test": "sls dynamodb start --migrate --stage local & sleep 10 && npm run jest && kill -9 `lsof -t -i:8000`"
+    "test": "sls dynamodb start --migrate --stage local & sleep 10 && npm run jest && kill -9 `lsof -t -i:8000`",
+    "deploy-test": "serverless deploy --stage test"
   },
   "dependencies": {
     "@aws/dynamodb-data-mapper": "^0.7.3",

@@ -1,4 +1,23 @@
-# serverless-aws-nodejs-typescript-boilerplate
-Serverless AWS NodeJS TypeScript Boilerplate
+# Serverless backend API for a user registration web application
 
-Based in https://webcache.googleusercontent.com/search?q=cache:qH9Zra5Fx6sJ:https://dev.to/michael_timbs/get-started-with-aws-serverless-and-typescript-5hgf+&cd=4&hl=en&ct=clnk&gl=au
+Check [Demo](http://user-registration-lr.s3-website-ap-southeast-2.amazonaws.com/) for user registration application.
+
+The front-end is in a [separate repository](https://github.com/LorenzoR/react-user-registration).
+
+## Available Scripts
+
+### `npm offline`
+
+Run Lambda functions offline.
+
+### `npm dynamodb`
+
+Run DynamoDB offline.
+
+### `npm test`
+
+Run tests.
+
+### `npm deploy-test`
+
+Deploy Lambda function to test environment in AWS.
