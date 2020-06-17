@@ -1,0 +1,20 @@
+sudo: false
+language: node_js
+node_js:
+  - 'stable'
+branches:
+  only:
+    - master
+cache:
+  directories:
+    - node_modules
+before_install:
+  - npm update
+  - npm install -g serverless
+install:
+  - npm install
+script:
+  - sls dynamodb install
+  - sls dynamodb start --migrate --stage dev & sleep 10 && npm run test
+  - pgrep -f "DynamoDBLocal.jar" | xargs kill # Kill DynamoDB Local
+  - serverless deploy --stage test
