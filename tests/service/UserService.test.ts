@@ -29,4 +29,11 @@ describe('user model', () => {
     expect(user).toHaveProperty('Name');
     expect(user.Name).toBe(newUser.Name);
   });
+
+  it('can not register a user with same email than before', async () => {
+    expect.hasAssertions();
+
+    const errorMsg = `There is already an user with email ${email}`;
+    await expect(async () => userService.register(newUser)).rejects.toThrow(errorMsg);
+  });
 });

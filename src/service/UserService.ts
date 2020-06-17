@@ -40,6 +40,13 @@ class UserService {
       throw new Error('Password can not be empty');
     }
 
+    // Check if the user exists already
+    const existingUser = await this.get(user.Email);
+
+    if (existingUser) {
+      throw new Error(`There is already an user with email ${user.Email}`);
+    }
+
     // Hash password
     const hash = await UserService.generateHash(null, user.password);
 

@@ -38,7 +38,6 @@ class UserRepositoryDynamoDB implements UserRepositoryInterface {
 
       return response;
     } catch (error) {
-      console.error(error);
       return null;
     }
   }
@@ -52,7 +51,7 @@ class UserRepositoryDynamoDB implements UserRepositoryInterface {
 
       return true;
     } catch (error) {
-      console.error('ERROR', error);
+      console.error('UserRepositoryDynamoDB::put()', error);
       return false;
     }
   }

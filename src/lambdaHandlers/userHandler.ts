@@ -9,6 +9,11 @@ import UserRepositoryDynamoDB from '../repositories/UserRepositoryDynamoDB';
 const userRepositoryDynamoDB = new UserRepositoryDynamoDB(process.env.STAGE || 'local');
 const userService = new UserService(userRepositoryDynamoDB);
 
+const responseHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Credentials': true,
+};
+
 export const registration: APIGatewayProxyHandler = async (event) => {
   // Get POST parameters
   const { body } = event;
@@ -21,22 +26,20 @@ export const registration: APIGatewayProxyHandler = async (event) => {
     password: parsedBody.user.password,
   });
 
-  // Insert user
   try {
+    // Insert user
     const response = await userService.register(newUser);
 
     return {
       statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Credentials': true,
-      },
+      headers: responseHeaders,
       body: JSON.stringify(response),
     };
   } catch (error) {
     return {
-      statusCode: 400,
-      body: JSON.stringify('ERROR'),
+      statusCode: 401,
+      headers: responseHeaders,
+      body: JSON.stringify(error.message),
     };
   }
 };
