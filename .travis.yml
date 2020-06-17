@@ -13,7 +13,8 @@ before_install:
   - npm install -g serverless
 install:
   - npm install
-script:
   - sls dynamodb install
+script:
   - npm run test
+after_success:
   - serverless deploy --stage test
